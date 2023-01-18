@@ -4,3 +4,4 @@ Apple
 Orange
 Banana
 Jackfruit
+Cereals
