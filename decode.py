@@ -29,10 +29,6 @@ Added supported_InputPlaybackMFX in MFX 2 command lines
 Removed -no_render option
 Added OTHER in supported codecs for .mp4 files & mpeg2 files support
 
-version 1.2
-Removed single quotes for True & False values.
-Some spaces adjusted in cmd_RunHW & cmd_PlaybackHW
-
 """
 # --------------------------------------------------
 # <start> setup environment ------------------------
@@ -295,7 +291,7 @@ def decode_hw():
     # Command Generation for MFX
     if (cmd_InputApp=="MFX"):
         supported_InputCodecsMFX={'AV1':'','HEVC':':hevc','VP9':'','AVC':':h264','VP8':'','VC1':'','MPEG2':':mpeg2','JPEG':':jpeg','OTHER':''}
-        supported_InputPlaybackMFX={True:'',False:''}
+        supported_InputPlaybackMFX={'True':'','False':''}
         supported_InputDXMFX={'11':'-d3d11','12':'-d3d12'}
         if  cmd_InputCodec not in supported_InputCodecsMFX:
             #logger.error("\nError!\n",cmd_InputApp,"either doesn't support or doesn't have command-line parameters defined for",cmd_InputCodec,"\nSupported codecs are:",supported_InputCodecsMFX,"\n\n")
@@ -303,8 +299,8 @@ def decode_hw():
             errorCode_DecodeHW=192
         else:
             errorCode_DecodeHW=0
-        cmd_RunHW = dir_AppSelected+" -i"+supported_InputCodecsMFX.get(cmd_InputCodec)+" "+dir_Source_InputFile+" "+supported_InputPlaybackMFX.get(cmd_InputPlaybackFlag)+" -hw -priority 1 "+supported_InputDXMFX.get(cmd_InputDX)+" -o "+dir_Results_OutputFile+" "+cmd_InputAppOptions
-        cmd_PlaybackHW = dir_AppSelected+" -i"+supported_InputCodecsMFX.get(cmd_InputCodec)+" "+dir_Source_InputFile+" "+supported_InputPlaybackMFX.get(cmd_InputPlaybackFlag)+" -hw -priority 1 "+supported_InputDXMFX.get(cmd_InputDX)+" "+cmd_InputAppOptions
+        cmd_RunHW = dir_AppSelected+" -i"+supported_InputCodecsMFX.get(cmd_InputCodec)+" "+dir_Source_InputFile+supported_InputPlaybackMFX.get(cmd_InputPlaybackFlag)+" -hw -priority 1"+" "+supported_InputDXMFX.get(cmd_InputDX)+" -o "+dir_Results_OutputFile+" "+cmd_InputAppOptions
+        cmd_PlaybackHW = dir_AppSelected+" -i"+supported_InputCodecsMFX.get(cmd_InputCodec)+" "+dir_Source_InputFile+supported_InputPlaybackMFX.get(cmd_InputPlaybackFlag)+" -hw -priority 1"+" "+supported_InputDXMFX.get(cmd_InputDX)+" "+cmd_InputAppOptions
     
     # Command Generation for FFMPEG
     if (cmd_InputApp=="FFMPEG"):
